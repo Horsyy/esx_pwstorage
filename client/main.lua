@@ -1,5 +1,5 @@
 local CurrentActionData, currentTask = {}, {}
-local HasAlreadyEnteredMarker, isDead, hasAlreadyJoined, addBlip = false, false, false, true
+local HasAlreadyEnteredMarker, hasAlreadyJoined, addBlip = false, false, true
 local LastStation, LastPart, LastPartNum, LastEntity, CurrentAction, CurrentActionMsg
 ESX = nil
 
@@ -19,18 +19,18 @@ AddEventHandler('esx_pwstorage:hasEnteredMarker', function(station, part, partNu
 end)
 
 AddEventHandler('esx_pwstorage:hasExitedMarker', function(station, part, partNum)
-		ESX.UI.Menu.CloseAll()
-	  CurrentAction = nil
+	ESX.UI.Menu.CloseAll()
+	CurrentAction = nil
 end)
 
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 
-			local playerPed = PlayerPedId()
-			local playerCoords = GetEntityCoords(playerPed)
-			local isInMarker, hasExited, letSleep = false, false, true
-			local currentStation, currentPart, currentPartNum
+		local playerPed = PlayerPedId()
+		local playerCoords = GetEntityCoords(playerPed)
+		local isInMarker, hasExited, letSleep = false, false, true
+		local currentStation, currentPart, currentPartNum
 
 		if addBlip and Config.EnableBlips then
 			for k,v in pairs(Config.StorageLocations) do
@@ -50,46 +50,46 @@ Citizen.CreateThread(function()
 			addBlip = false
 		end
 
-			for k,v in pairs(Config.StorageLocations) do
-				for i=1, #v.Storages, 1 do
-					local distance = #(playerCoords - v.Storages[i])
+		for k,v in pairs(Config.StorageLocations) do
+			for i=1, #v.Storages, 1 do
+				local distance = #(playerCoords - v.Storages[i])
 
-					if distance < Config.DrawDistance then
-						DrawMarker(21, v.Storages[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
-						letSleep = false
+				if distance < Config.DrawDistance then
+					DrawMarker(21, v.Storages[i], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, true, false, false, false)
+					letSleep = false
 
-						if distance < Config.MarkerSize.x then
-							isInMarker, currentStation, currentPart, currentPartNum = true, k, 'Storage', i
-						end
+					if distance < Config.MarkerSize.x then
+						isInMarker, currentStation, currentPart, currentPartNum = true, k, 'Storage', i
 					end
 				end
 			end
+		end
 
-			if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
-				if
-					(LastStation and LastPart and LastPartNum) and
-					(LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
-				then
-					TriggerEvent('esx_pwstorage:hasExitedMarker', LastStation, LastPart, LastPartNum)
-					hasExited = true
-				end
-
-				HasAlreadyEnteredMarker = true
-				LastStation             = currentStation
-				LastPart                = currentPart
-				LastPartNum             = currentPartNum
-
-				TriggerEvent('esx_pwstorage:hasEnteredMarker', currentStation, currentPart, currentPartNum)
-			end
-
-			if not hasExited and not isInMarker and HasAlreadyEnteredMarker then
-				HasAlreadyEnteredMarker = false
+		if isInMarker and not HasAlreadyEnteredMarker or (isInMarker and (LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum)) then
+			if
+				(LastStation and LastPart and LastPartNum) and
+				(LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
+			then
 				TriggerEvent('esx_pwstorage:hasExitedMarker', LastStation, LastPart, LastPartNum)
+				hasExited = true
 			end
 
-			if letSleep then
-				Citizen.Wait(500)
-			end
+			HasAlreadyEnteredMarker = true
+			LastStation             = currentStation
+			LastPart                = currentPart
+			LastPartNum             = currentPartNum
+
+			TriggerEvent('esx_pwstorage:hasEnteredMarker', currentStation, currentPart, currentPartNum)
+		end
+
+		if not hasExited and not isInMarker and HasAlreadyEnteredMarker then
+			HasAlreadyEnteredMarker = false
+			TriggerEvent('esx_pwstorage:hasExitedMarker', LastStation, LastPart, LastPartNum)
+		end
+
+		if letSleep then
+			Citizen.Wait(500)
+		end
 	end
 end)
 
@@ -120,7 +120,6 @@ Citizen.CreateThread(function()
 
 					OpenStorageArmoryMenu(CurrentActionData.station)
 				end
-
 				CurrentAction = nil
 			end
 		end
@@ -153,7 +152,6 @@ function OpenStorageArmoryMenu(station)
 end
 
 function KeyboardInput(entryTitle, textEntry, inputText, maxLength)
-
     AddTextEntry(entryTitle, textEntry)
 
     DisplayOnscreenKeyboard(1, entryTitle, '', inputText, '', '', '', maxLength)
@@ -174,11 +172,3 @@ function KeyboardInput(entryTitle, textEntry, inputText, maxLength)
         return nil
     end
 end
-
-AddEventHandler('playerSpawned', function(spawn)
-	isDead = false
-end)
-
-AddEventHandler('esx:onPlayerDeath', function(data)
-	isDead = true
-end)
