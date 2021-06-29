@@ -1,7 +1,6 @@
 local CurrentActionData, currentTask = {}, {}
-local HasAlreadyEnteredMarker, isDead, hasAlreadyJoined = false, false, false
+local HasAlreadyEnteredMarker, isDead, hasAlreadyJoined, addBlip = false, false, false, true
 local LastStation, LastPart, LastPartNum, LastEntity, CurrentAction, CurrentActionMsg
-local addBlip = true
 ESX = nil
 
 Citizen.CreateThread(function()
