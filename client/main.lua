@@ -144,10 +144,10 @@ function OpenStorageArmoryMenu(station)
 		end
 	end, function(data, menu)
 		menu.close()
-
-		CurrentAction     = 'menu_storage'
-		CurrentActionMsg  = _U('open_storage')
-		CurrentActionData = {station = station}
+		-- A temporary bug with this feature
+		--CurrentAction     = 'menu_storage'
+		--CurrentActionMsg  = _U('open_storage')
+		--CurrentActionData = {station = station}
 	end)
 end
 
