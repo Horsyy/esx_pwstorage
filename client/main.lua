@@ -139,7 +139,7 @@ function OpenStorageArmoryMenu(station)
 		elements = elements
 	}, function(data, menu)
 		if data.current.value == 'pass' then
-			password = KeyboardInput("Send a message : ",  "Password :","" ,4)
+			password = KeyboardInput("Send a message : ", "Password :", "", Config.PasswordLength)
 			TriggerEvent("esx_inventoryhud:openStorageInventory", Config.PwStorages[tonumber(password)]["society"])
 		end
 	end, function(data, menu)
