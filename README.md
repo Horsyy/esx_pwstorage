@@ -2,11 +2,11 @@
 This storage can be opened by typing a registered password. Remember that anyone can open your storage by entering your password.
  
 ## About the Project - Preview
-                                                                                     EXPIRATION DATE
-                                                                                    ┌───────────── yeah
-                                                                                    │     ┌───────────── month
-                                                                                    │     │     ┌───────────── day of the month
-                                                                                    │     │     │
+#                                                                                     EXPIRATION DATE
+#                                                                                    ┌───────────── yeah
+#                                                                                    │     ┌───────────── month
+#                                                                                    │     │     ┌───────────── day of the month
+#                                                                                    │     │     │
 In order to add more Storages you should use the command /addStorage name password year-month-date
 
 ![image](https://user-images.githubusercontent.com/42266290/123836354-48443380-d912-11eb-966d-64ffdec1901e.png)
