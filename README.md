@@ -4,10 +4,10 @@ This storage can be opened by typing a registered password. Remember that anyone
 ## About the Project - Preview
                                                                                          EXPIRATION DATE
                                                                                         ┌───────────── yeah
-                                                                                        │     ┌───────────── month
-                                                                                        │     │     ┌───────────── day of the month
-                                                                                        │     │     │
-    In order to add more Storages you should use the command /addStorage name password year-month-date
+                                                                                        │   ┌───────────── month
+                                                                                        │   │   ┌───────────── day of the month
+                                                                                        │   │   │
+    In order to add more Storages you should use the command /addStorage name password 2021-07-20
 
 ## There are plenty options but i recommend you to keep them as it is:
     
