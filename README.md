@@ -57,6 +57,10 @@ This storage can be opened by typing a registered password. Remember that anyone
 
 ![image](https://user-images.githubusercontent.com/42266290/123836354-48443380-d912-11eb-966d-64ffdec1901e.png)
 
+## Upcoming
+
+* Changes to /addStorage to work in case of non sql usage.
+
 ## Features
 
 Resmon: ~0.01-0.03 ms.
