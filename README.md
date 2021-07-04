@@ -18,6 +18,43 @@ This storage can be opened by typing a registered password. Remember that anyone
     Config.EnableRestrictedMode       = true                        -- Restricted Mode is a safety mode to prevent multiple players access the storage at the same time.
     Config.PasswordLength             = 4                           -- The maximum password length that can be typed.
 
+## In order to add more access points you should add coordinates here:
+
+    Config.StorageLocations = {
+      Storage = {
+        Storages = {
+          vector3(214.81, -806.36, 30.81),
+          vector3(276.27, -342.91, 44.92)
+        }
+      }
+    }
+
+## And in case you set the Config.EnableSQL to false then you have to add by your self the DataBase with my examples (esx_pwstorage.sql) and set the Config.PwStorage:
+
+    Config.PwStorages = {
+      [1234] = { ['society'] = 'society_HorseStorage', 
+        ['expired'] = {
+          ['year']	= '2021',
+          ['month']	= '07',
+          ['day']	= '04'
+        }
+      },
+      [4321] = { ['society'] = 'society_ShokaStorage', 
+        ['expired'] = {
+          ['year']	= '2021',
+          ['month']	= '07',
+          ['day']	= '02'
+        }
+      },
+      [1314] = { ['society'] = 'society_OpsoStorage', 
+        ['expired'] = {
+          ['year']	= '2021',
+          ['month']	= '07',
+          ['day']	= '10'
+        }
+      },
+    }
+
 ![image](https://user-images.githubusercontent.com/42266290/123836354-48443380-d912-11eb-966d-64ffdec1901e.png)
 
 ## Features
