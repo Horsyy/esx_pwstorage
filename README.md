@@ -5,7 +5,7 @@ This storage can be opened by typing a registered password. Remember that anyone
                                                                                          EXPIRATION DATE
                                                                                         ┌───────────── yeah
                                                                                         │   ┌───────────── month
-                                                                                        │   │   ┌───────────── day of the month
+                                                                                        │   │   ┌───────────── day
                                                                                         │   │   │
     In order to add more Storages you should use the command /addStorage name password 2021-07-20
 
